@@ -1,8 +1,14 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 
 // Modules
 import { CatsModule } from "./cat";
-import { DogsModule } from "./dogs"
+import { DogsModule } from "./dogs";
+
+// Middlewares
+import { LoggerMiddleware, ExplicitBlockerMiddleware } from "./middlewares"
+import { CatsController } from './cat/cats.controller';
+import { DogsController } from './dogs/dogs.controller';
+
 
 @Module({
   imports: [CatsModule, DogsModule],
@@ -10,4 +16,15 @@ import { DogsModule } from "./dogs"
   providers: [],
   exports: []
 })
-export class AppModule { }
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(LoggerMiddleware).forRoutes(CatsController, DogsController)
+      .apply(ExplicitBlockerMiddleware).forRoutes(
+        {
+          path: "*porn*",
+          method: RequestMethod.ALL
+        },
+      )
+  }
+}
