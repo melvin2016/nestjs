@@ -1,5 +1,5 @@
 // Interfaces
-import { Cat } from "../interfaces/cat.interface"
+import { Cat } from "../interfaces";
 
 export class CreateCatDTO implements Cat {
     id: string;
