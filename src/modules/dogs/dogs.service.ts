@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, PreconditionFailedException } from "@nestjs/common";
 
 // Types
 import type { Dog } from "./interfaces";
@@ -13,6 +13,7 @@ export class DogsService {
     }
 
     getAllDogs() {
+        throw new PreconditionFailedException();
         return this.dogs;
     }
 }
