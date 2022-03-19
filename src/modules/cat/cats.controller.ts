@@ -4,12 +4,15 @@ import { Controller, Get, Post, HttpCode, Header, Redirect, Param, Body } from "
 import { CreateCatDTO } from "./dto"
 
 // Services
-import { DogsService } from "../dogs/dogs.service"
-import { CatsService } from "./cats.service"
+import { CatsService } from "./cats.service";
+import { DogsService } from "../dogs";
+
 
 // Interfaces
 import { Cat } from "./interfaces";
-import { Dog } from "../dogs/interfaces";
+import { Dog } from "../dogs";
+
+
 
 // Types
 interface CatsAndDogs {
