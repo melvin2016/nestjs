@@ -1,13 +1,11 @@
 import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 
 // Modules
-import { CatsModule } from "./modules/cat";
-import { DogsModule } from "./modules/dogs";
+import { CatsModule, CatsController } from "./modules/cat";
+import { DogsModule, DogsController } from "./modules/dogs";
 
 // Middlewares
 import { LoggerMiddleware, ExplicitBlockerMiddleware } from "./middlewares";
-import { CatsController } from "./modules/cat";
-import { DogsController } from './modules/dogs';
 
 
 @Module({
